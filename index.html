@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to Vue</title>
+  <script src="https://unpkg.com/vue"></script>
+  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/circle.css">
+  <style>
+
+        </style>
+</head>
+<body>
+  <div id="app">
+      <section>
+            <div class="cash">
+                <input class="special-input" type="text" v-model="newUser">
+            </div>
+            <div class="count">
+                <button class="counter" v-on:click="addInheritence(newUser)">Dodaj</button>
+            </div>
+      </section>
+        <section v-for="person in persons">
+            <div>
+                <span>{{person.name}}</span>
+                <button v-on:click="removeInheritence(person)">X</button>
+            </div>
+            <div class="fraction" v-for="(fraction, index) in person.fractions" v-bind:style="{ order: index }">
+                <input class="special-input" type="text" v-model="fraction.top">
+                <hr>
+                <input class="special-input" type="text" v-model="fraction.bottom">
+            </div>
+            <div class="signs" style="order: 0;">
+                <input class="special-input" type="text" disabled="" value="*">
+            </div>
+            <div class="signs" style="order: 1;">
+                <input class="special-input" type="text" disabled="" value="*">
+            </div>
+            <div class="count" style="order: 2;">
+                <button class="counter" v-on:click="countInheritence(person)" >Policz</button>
+            </div>
+            <div class="fraction" style="order: 2;"> 
+                <input class="special-input" type="text" v-model="person.total.top">
+                <hr>
+                <input class="special-input" type="text" v-model="person.total.bottom">
+            </div>
+            <div class="c100 center" v-bind:class="[person.total.class]" style="order: 2;">
+                <span>{{ (person.total.sum * 100).toFixed(0) }}</span>
+                <div class="slice"><div class="bar"></div><div class="fill"></div></div>
+            </div>
+        </div>
+    </section>
+
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+            newUser: '',
+            persons: {
+                barbara: { 
+                    name: "barbara",
+                    fractions: [
+                        {top: 1, bottom: 2},
+                        {top: 1, bottom: 2},
+                        {top: 1, bottom: 2},
+                    ],
+                    total: {
+                        top: 0,
+                        bottom: 0,
+                        sum: 0,
+                        class : 'p0'
+                    }
+                }
+            }
+      },
+      methods: {
+        countInheritence: function (person) {
+            value1  = parseFloat( person.fractions[0].top );
+            value2  = parseFloat( person.fractions[0].bottom );
+            value3  = parseFloat( person.fractions[1].top );
+            value4  = parseFloat( person.fractions[1].bottom );
+            value5  = parseFloat( person.fractions[2].top );
+            value6  = parseFloat( person.fractions[2].bottom );
+
+            let topFractionValue = value1 * value3 * value5;
+            let bottomFractionValue = value2 * value4 * value6;
+                    
+            let topFractionValueLowered = false;
+            let bottomFractionValueLowered = false;
+                     
+            function lowerNumbers (value1 , value2 ) {
+                        if (value1 % 7 == 0 && value2 % 7 == 0)
+                        {
+                            topFractionValueLowered    = value1 / 7;
+                            bottomFractionValueLowered = value2 / 7;
+                        } else if (value1 % 5 == 0 && value2 % 5 == 0)
+                        {
+                            topFractionValueLowered    = value1 / 5;
+                            bottomFractionValueLowered = value2 / 5;
+                        } else if (value1 % 3 == 0 && value2 % 3 == 0)
+                        {
+                            topFractionValueLowered    = value1 / 3;
+                            bottomFractionValueLowered = value2 / 3;
+                        } else if (value1 % 2 == 0 && value2 % 2 == 0)
+                        {
+                            topFractionValueLowered    = value1 / 2;
+                            bottomFractionValueLowered = value2 / 2;
+                        } else {
+                            return true;
+                        }
+
+                        if (lowerNumbers(topFractionValueLowered, bottomFractionValueLowered)) {
+                            return true;
+                        } else {
+                            lowerNumbers(topFractionValueLowered, bottomFractionValueLowered);
+                        }
+            }
+            lowerNumbers(topFractionValue, bottomFractionValue);
+
+
+            person.total.top = topFractionValueLowered ? topFractionValueLowered : topFractionValue;
+            person.total.bottom = bottomFractionValueLowered ? bottomFractionValueLowered : bottomFractionValue;
+
+            person.total.sum = person.total.top / person.total.bottom;
+            person.total.class = 'p' + ( person.total.sum * 100 ).toFixed(0); 
+        },
+        removeInheritence: function (person) {
+            Vue.delete(this.persons, person.name);
+        },
+        addInheritence: function (personName) {
+            if (personName == '') return false;
+            Vue.set(
+                this.persons,
+                personName,
+                { 
+                    name: personName,
+                    fractions: [
+                        {top: 1, bottom: 2},
+                        {top: 1, bottom: 2},
+                        {top: 1, bottom: 2},
+                    ],
+                    total: {
+                        top: 0,
+                        bottom: 0,
+                        sum: 0,
+                        class : 'p0'
+                    }
+                }
+            )
+        }
+      }
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+        /*Font system and global vars*/
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+* {
+    font-family: 'Press Start 2P', sans-serif;
+    line-height: 24px;
+}
+
+/*Grid system for website*/
+.grid-container {
+    display: grid;
+}
+
+.grid-container.one-column {
+ grid-template-columns: repeat(1 , 1fr);
+}
+.grid-container.two-column {
+ grid-template-columns: repeat(2 , 1fr);
+}
+.grid-container.three-column {
+ grid-template-columns: repeat(3 , 1fr);
+}
+.grid-container.four-column {
+ grid-template-columns: repeat(4 , 1fr);
+}
+
+.grid-block.grid-block-full {
+  grid-column-start: span 4;
+}
+
+@media (max-width: 1440px) {
+    .grid-container.three-column,
+    .grid-container.four-column {
+        grid-template-columns: repeat(2 , 1fr);
+    }
+}
+
+@media (max-width: 999px) {
+    .grid-container.two-column,
+    .grid-container.three-column,
+    .grid-container.four-column {
+        grid-template-columns: 1fr;
+    }
+}
+
+body {
+    background-color: black;
+}
+
+h1, h2, h3, h4 {
+    font-size: 1.4rem;
+    color: white;
+    padding: 0.5rem;
+}
+
+a {
+    color: green;
+}
+
+a:hover {
+    color: black;
+    background-color: green;
+}
+
+nav {
+    background: white;
+    position: sticky;
+}
+
+article {
+    font-size: 16px;
+    padding: 1rem;
+    color: white;
+}
+
+pre {
+  margin: 1rem 0;
+  color: red;
+}
+
+.hp-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+        /* special style */
+        section {
+            margin: 3rem auto;
+            max-width: 1200px;
+            display: flex;
+            flex-flow: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+        span, p {
+            font-family: 'Press Start 2P', sans-serif;
+            line-height: 1.5rem;
+            color: white;
+        }
+        hr {
+            width: 100%;
+            height: 4px;
+            background-color: #fff;
+        }
+        .cash {
+            max-width: 300px;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+        }
+        .fraction {
+            max-width: 300px;
+            min-height: 250px;
+            margin: 0 1rem;
+            display: flex;
+            flex-flow: column;            
+            justify-content: space-between;
+            align-items: center;
+        }
+        .signs {
+            max-width: 300px;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .count {
+            width: 100px;
+            height: 250px;
+        }
+        .count .counter {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #ccc;
+            box-shadow: 1px 1px 2px 0 white;
+            transition: 1s;
+            cursor: pointer;
+        }
+        .count .counter:hover { 
+            background-color: white;
+            margin-top: -4px;
+            margin-left: -4px;
+            box-shadow: 8px 8px 4px 0 #ccc;
+        }
+        .img-container {
+            width: 100px;
+        }
+        .img-container img {
+            width: 200px;
+            height: auto;
+            margin: 50px;
+            margin-left: -50px;
+        }
+        .special-input {
+            border: none;
+            background-color: #1f1f1f;
+            color: white;
+            font-size: 1.4rem;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+        .special-input.missing-value {
+            border: 2px solid red;
+        }
+        .cash .special-input {
+            width: 200px;
+        }
+        .fraction-box {
+            position: relative;
+        }
+        .top-fraction-value-lowered {
+            position: absolute;
+            color: white;
+            top: -15px;
+            right: -15px;
+            font-size: 30px;
+        }
+        .bottom-fraction-value-lowered {
+            position: absolute;
+            color: white;
+            top: -15px;
+            right: -15px;
+            font-size: 30px;
+        }
+        .strike-fraction {
+            position: absolute;
+            color: red;
+            top: 40px;
+            left: 17px;
+            opacity: 0.5;
+            font-size: 80px;
+            display: none;
+        }
+        .strike-fraction.show {
+            display: inline-block;
+        }
+        .error-block {
+            display: none;
+        }
+        .error-block img {
+            width: 250px;
+            margin: 0 auto;
+            display: block;
+        }
+        .error-block p {
+            text-align: center;
+            font-size: 30px;
+            color: red;
+            line-height: 30px;
+        }
+        .error-block.show {
+            display: initial;
+        }
+
+        @media (max-width: 1200px) {
+            .count, .cash, .fraction, .signs {
+                width: 100%;
+                margin: 1rem 0;
+            }
+            .count .special-input, .cash .special-input, .fraction .special-input {
+                width: 100%;
+            }
+        }
