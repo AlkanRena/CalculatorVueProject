@@ -103,6 +103,15 @@ pre {
             height: 4px;
             background-color: #fff;
         }
+        .name {
+            width: 100%;
+            padding-bottom: 1rem;
+            margin: 1rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid white;
+        }
         .cash {
             max-width: 300px;
             display: flex;
@@ -216,11 +225,12 @@ pre {
         }
 
         @media (max-width: 1200px) {
-            .count, .cash, .fraction, .signs {
-                width: 100%;
-                margin: 1rem 0;
+            .count .counter {
+                width: 100px;
+                height: 100px;
+                margin: 75px 0 0;
             }
-            .count .special-input, .cash .special-input, .fraction .special-input {
-                width: 100%;
+            .count .special-input, .fraction .special-input {
+                width: 100px;
             }
         }

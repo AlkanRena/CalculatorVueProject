@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome to Vue</title>
-  <script src="https://unpkg.com/vue"></script>
-  <link rel="stylesheet" href="styles/reset.css">
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/circle.css">
-  <style>
-
-        </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Vue</title>
+    <script src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" href="styles/reset.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/circle.css">
 </head>
 <body>
   <div id="app">
@@ -21,7 +19,7 @@
             </div>
       </section>
         <section v-for="person in persons">
-            <div>
+            <div class="name">
                 <span>{{person.name}}</span>
                 <button v-on:click="removeInheritence(person)">X</button>
             </div>
